@@ -1,0 +1,37 @@
+ Button{
+     -fx-border-radius: 5;
+     -fx-background-color: #6d7c7c;
+     -fx-pref-width: 200;
+ }
+ TextField{
+     -fx-max-width: 200;
+ }
+
+ .title {
+     -fx-font-weight: Bold;
+     -fx-font-size: 30;
+     -fx-fill: #84be48;
+ }
+
+ .message {
+     -fx-fill: red;
+ }
+
+ .gameText{
+     -fx-fill: #3c3c8a;
+     -fx-font-size: 30;
+     -fx-font-weight: Bold;
+ }
+ .scoreBoardText{
+     -fx-font-size: 20;
+     -fx-font-weight: Bold;
+     -fx-fill: #18ab18;
+ }
+ .scoreBoardBox{
+     -fx-background-color: #3953a9;
+     -fx-alignment: center;
+     -fx-max-width: 300;
+     -fx-padding: 5;
+     -fx-spacing: 10;
+     -fx-background-radius: 10;
+ }
