@@ -1,13 +1,11 @@
 package view.transitions;
 
 import javafx.animation.Transition;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import view.GamePage;
-import view.components.BigBoss;
-import view.components.Bullet;
+import model.components.Bullet;
 
 public class ShootTransition extends Transition {
     private Bullet bullet;

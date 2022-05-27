@@ -2,8 +2,7 @@ package view.transitions;
 
 import javafx.animation.Transition;
 import javafx.util.Duration;
-import view.GamePage;
-import view.components.Bullet;
+import model.components.Bullet;
 
 public class BulletSparkTransition extends Transition {
     Bullet bullet;

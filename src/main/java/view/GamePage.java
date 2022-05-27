@@ -3,22 +3,18 @@ package view;
 import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Polygon;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import model.User;
-import view.components.Airplane;
-import view.components.BigBoss;
+import model.components.Airplane;
+import model.components.BigBoss;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -42,15 +38,19 @@ public class GamePage {
     Random random = new Random();
 
     private static int score = 0;
+    private static long timeDifference;
 
+    private Text scoreText;
     public void initialize(){
+        timeDifference = System.currentTimeMillis();
         score = 0;
         isPaused = false;
         allAnimations = new ArrayList<>();
         Image image = new Image(getClass().getResource("/frames/backgrounds/02.png").toExternalForm());
         Image image2 = new Image(getClass().getResource("/frames/backgrounds/08.png").toExternalForm());
-        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT);
-        BackgroundImage backgroundImage2 = new BackgroundImage(image2, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT);
+        BackgroundSize backgroundSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, true, true, true);
+        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,backgroundSize);
+        BackgroundImage backgroundImage2 = new BackgroundImage(image2, BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,backgroundSize);
         pane.setBackground(new Background(backgroundImage2, backgroundImage));
 
         String avatar = User.getCurrentUser().getAvatar();
@@ -67,6 +67,11 @@ public class GamePage {
 
         Platform.runLater(() ->airplane.requestFocus());
 
+        scoreText = new Text("Score : " + score);
+        scoreText.getStyleClass().add("gameText");
+        pane.getChildren().add(scoreText);
+        scoreText.setX(400);
+        scoreText.setY(50);
 
         Timeline healthTimeline = new Timeline(new KeyFrame(Duration.millis(10), actionEvent -> {
             if(Airplane.getInstance().getHealth() <= 0){
@@ -91,6 +96,9 @@ public class GamePage {
             }
             Airplane.getInstance().getHealthText().setText("Cuphead health: " + Airplane.getInstance().getHealth());
             BigBoss.getInstance().getHealthText().setText("Boss health: " + BigBoss.getInstance().getHealth());
+            //System.out.println(score);
+            double showingScore = score + ((100 - BigBoss.getInstance().getHealth()) / 8) * difficultyLevel + Airplane.getInstance().getHealth() * 5 * difficultyLevel;
+            scoreText.setText("Score : " + showingScore);
             airplane.requestFocus();
         }));
         healthTimeline.setCycleCount(-1);
@@ -123,6 +131,7 @@ public class GamePage {
         App.changeScene("pausePage",true);
     }
     public static void endGame() {
+        timeDifference = System.currentTimeMillis() - timeDifference;
         mediaPlayer.stop();
         ArrayList<Animation> allAnimationsCopy = new ArrayList<>(allAnimations);
         for (Animation animation : allAnimationsCopy) {
@@ -160,4 +169,7 @@ public class GamePage {
         return isPaused;
     }
 
+    public static long getTimeDifference() {
+        return timeDifference;
+    }
 }

@@ -1,18 +1,12 @@
-package view.components;
+package model.components;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.animation.Transition;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -32,13 +26,13 @@ public class BigBoss extends Rectangle {
     private BigBoss(AnchorPane pane, Image image) {
         super(image.getWidth(), image.getHeight() , new ImagePattern(image));
         this.pane = pane;
-        setX(700);
+        Platform.runLater(() -> setX(pane.getWidth() - 650));
         setY(150);
         health = 100;
         pane.getChildren().add(this);
 
         healthText = new Text("Boss health: " + health);
-        healthText.setX(950);
+        Platform.runLater(() -> healthText.setX(pane.getWidth() - 300));
         healthText.setY(50);
         healthText.getStyleClass().add("gameText");
         pane.getChildren().add(healthText);
@@ -114,8 +108,9 @@ public class BigBoss extends Rectangle {
 
     public void checkCollision(){
         Bounds bounds = new BoundingBox(getX() + 80 ,getY() + 100, getWidth(), getHeight() - 150);
-        if(Airplane.getInstance().intersects(bounds)){
+        if(Airplane.getInstance().getBoundsInParent().intersects(bounds)){
             Airplane.getInstance().setHealth(Airplane.getInstance().getHealth() - (0.5 * GamePage.getDifficultyLevel()));
+            Airplane.getInstance().setBlinking(true);
         }
     }
 

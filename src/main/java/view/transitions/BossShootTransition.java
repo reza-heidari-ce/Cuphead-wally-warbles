@@ -2,13 +2,10 @@ package view.transitions;
 
 import javafx.animation.Transition;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import view.GamePage;
-import view.components.BigBoss;
-import view.components.Egg;
-
-import java.awt.event.ActionEvent;
+import model.components.BigBoss;
+import model.components.Egg;
 
 public class BossShootTransition extends Transition {
     boolean hasShot;

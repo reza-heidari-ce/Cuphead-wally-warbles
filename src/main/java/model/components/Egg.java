@@ -1,4 +1,4 @@
-package view.components;
+package model.components;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -41,6 +41,7 @@ public class Egg extends Circle {
     public void checkCollision(){
         if(Airplane.getInstance().getBoundsInParent().intersects(getBoundsInParent())){
             Airplane.getInstance().setHealth(Airplane.getInstance().getHealth() - (0.5 * GamePage.getDifficultyLevel()));
+            Airplane.getInstance().setBlinking(true);
             setCenterX(-10);
             pane.getChildren().remove(this);
             eggTransition.stop();

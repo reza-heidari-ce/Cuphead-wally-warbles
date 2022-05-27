@@ -3,7 +3,7 @@ package view.transitions;
 import javafx.animation.Transition;
 import javafx.util.Duration;
 import view.GamePage;
-import view.components.Egg;
+import model.components.Egg;
 
 public class EggTransition extends Transition {
     private Egg egg;

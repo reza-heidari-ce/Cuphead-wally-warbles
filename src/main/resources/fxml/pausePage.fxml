@@ -18,6 +18,7 @@
         <Button text="Restart" onMouseClicked="#restartGame"/>
         <Button text="End Game" onMouseClicked="#endGame"/>
         <Text fx:id="message" styleClass="message"/>
+        <Text text="Help : use arrow keys to move / space to shoot" styleClass="helpText"/>
         </VBox>
     </center>
 </BorderPane>

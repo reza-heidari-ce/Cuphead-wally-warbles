@@ -35,3 +35,7 @@
      -fx-spacing: 10;
      -fx-background-radius: 10;
  }
+ .helpText{
+     -fx-font-weight: Bold;
+     -fx-fill: blue;
+ }

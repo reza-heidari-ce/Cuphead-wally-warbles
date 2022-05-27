@@ -1,4 +1,4 @@
-package view.components;
+package model.components;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -8,7 +8,6 @@ import view.GamePage;
 import view.transitions.BulletSparkTransition;
 import view.transitions.MiniBossFlyTransition;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -74,6 +73,7 @@ public class MiniBoss extends Rectangle {
         }
         if(Airplane.getInstance().getBoundsInParent().intersects(getBoundsInParent())){
             Airplane.getInstance().setHealth(Airplane.getInstance().getHealth() - (0.5 * GamePage.getDifficultyLevel()));
+            Airplane.getInstance().setBlinking(true);
             setX(-20);
             miniBossFlyTransition.stop();
             pane.getChildren().remove(this);

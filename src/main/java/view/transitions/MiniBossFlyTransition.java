@@ -3,7 +3,7 @@ package view.transitions;
 import javafx.animation.Transition;
 import javafx.util.Duration;
 import view.GamePage;
-import view.components.MiniBoss;
+import model.components.MiniBoss;
 
 public class MiniBossFlyTransition extends Transition {
 

@@ -16,6 +16,7 @@
             <Text fx:id="progress"/>
             <Text fx:id="score"/>
             <Text fx:id="totalScore"/>
+            <Text fx:id="timeSpent"/>
             <Button text="Restart" onMouseClicked="#restartGame"/>
             <Button text="Main Menu" onMouseClicked="#enterMainMenu"/>
         </VBox>

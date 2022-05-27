@@ -3,7 +3,7 @@ package view.transitions;
 import javafx.animation.Transition;
 import javafx.util.Duration;
 import view.GamePage;
-import view.components.BigBoss;
+import model.components.BigBoss;
 
 public class BigBossFlyTransition extends Transition {
     private int direction;
